@@ -5,135 +5,6 @@
   "uuid": "680489ad-9fef-41b1-a671-4d67ef97768c",
   "patterns": [
     {
-      "begin": "(<)(:data)\\b(?=[^>]*(?:use=('json'|\"json\")))(?![^/>]*/>\\s*$)",
-      "beginCaptures": {
-        "1": {
-          "name": "punctuation.definition.tag.begin.directive.data"
-        },
-        "2": {
-          "name": "entity.name.tag.seedling.directive.data"
-        }
-      },
-      "end": "(</)(:data)(>)",
-      "endCaptures": {
-        "1": {
-          "name": "punctuation.definition.tag.begin.html"
-        },
-        "2": {
-          "name": "entity.name.tag.seedling.directive.data"
-        },
-        "3": {
-          "name": "punctuation.definition.tag.end.directive.data"
-        }
-      },
-      "patterns": [
-        {
-          "include": "#tag-stuff"
-        },
-        {
-          "contentName": "source.json",
-          "begin": "(>)",
-          "beginCaptures": {
-            "1": {
-              "name": "punctuation.definition.tag.end.directive.data"
-            }
-          },
-          "end": "(?=</:data>)",
-          "patterns": [
-            {
-              "include": "source.json"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "begin": "(<)(:data)\\b(?=[^>]*(?:use=('toml'|\"toml\")))(?![^/>]*/>\\s*$)",
-      "beginCaptures": {
-        "1": {
-          "name": "punctuation.definition.tag.begin.directive.data"
-        },
-        "2": {
-          "name": "entity.name.tag.seedling.directive.data"
-        }
-      },
-      "end": "(</)(:data)(>)",
-      "endCaptures": {
-        "1": {
-          "name": "punctuation.definition.tag.begin.html"
-        },
-        "2": {
-          "name": "entity.name.tag.seedling.directive.data"
-        },
-        "3": {
-          "name": "punctuation.definition.tag.end.directive.data"
-        }
-      },
-      "patterns": [
-        {
-          "include": "#tag-stuff"
-        },
-        {
-          "contentName": "source.toml",
-          "begin": "(>)",
-          "beginCaptures": {
-            "1": {
-              "name": "punctuation.definition.tag.end.directive.data"
-            }
-          },
-          "end": "(?=</:data>)",
-          "patterns": [
-            {
-              "include": "source.toml"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "begin": "(<)(:data)\\b(?=[^>]*(?:use=('yaml'|\"yaml\"|'yml'|\"yml\")))(?![^/>]*/>\\s*$)",
-      "beginCaptures": {
-        "1": {
-          "name": "punctuation.definition.tag.begin.directive.data"
-        },
-        "2": {
-          "name": "entity.name.tag.seedling.directive.data"
-        }
-      },
-      "end": "(</)(:data)(>)",
-      "endCaptures": {
-        "1": {
-          "name": "punctuation.definition.tag.begin.html"
-        },
-        "2": {
-          "name": "entity.name.tag.seedling.directive.data"
-        },
-        "3": {
-          "name": "punctuation.definition.tag.end.directive.data"
-        }
-      },
-      "patterns": [
-        {
-          "include": "#tag-stuff"
-        },
-        {
-          "contentName": "source.yaml",
-          "begin": "(>)",
-          "beginCaptures": {
-            "1": {
-              "name": "punctuation.definition.tag.end.directive.data"
-            }
-          },
-          "end": "(?=</:data>)",
-          "patterns": [
-            {
-              "include": "source.yaml"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "begin": "(<)(style)\\b(?=[^>]*(?:(?:type=('text/css'|\"text/css\")|lang=(css|'css'|\"css\")))?)(?![^/>]*/>\\s*$)",
       "beginCaptures": {
         "1": {
@@ -263,7 +134,7 @@
       ]
     },
     {
-      "begin": "({)\\s*(:if|:elseif|:else|@html)",
+      "begin": "({)\\s*(:if|:elseif|:else|:skip|:when|:is|:continue|:break)",
       "beginCaptures": {
         "1": {
           "name": "punctuation.definition.tag.begin.seedling"
@@ -285,24 +156,7 @@
       ]
     },
     {
-      "match": "({)\\s*(:then|:catch)\\s+([_$[:alpha:]][_$[:alnum:]]*)\\s*(})",
-      "captures": {
-        "1": {
-          "name": "punctuation.definition.tag.begin.seedling"
-        },
-        "2": {
-          "name": "keyword.control.conditional"
-        },
-        "3": {
-          "name": "variable"
-        },
-        "4": {
-          "name": "punctuation.definition.tag.end.seedling"
-        }
-      }
-    },
-    {
-      "begin": "({)\\s*(#each)",
+      "begin": "({)\\s*(:each)",
       "beginCaptures": {
         "1": {
           "name": "punctuation.definition.tag.begin.seedling"
@@ -378,7 +232,7 @@
       ]
     },
     {
-      "match": "({)\\s*(:else|/:if|/each|/await)\\s*(})",
+      "match": "({)\\s*(/:if|/:each|/:skip|/:when)\\s*(})",
       "captures": {
         "1": {
           "name": "punctuation.definition.tag.begin.seedling"
@@ -460,93 +314,6 @@
       ]
     },
     {
-      "begin": "(<:layout)",
-      "beginCaptures": {
-        "1": {
-          "name": "punctuation.definition.seedling.tag.begin.directive.layout"
-        },
-        "2": {
-          "name": "entity.name.tag.seedling.directive.layout"
-        },
-        "3": {
-          "name": "entity.seedling.directive"
-        }
-      },
-      "end": "(/>)",
-      "endCaptures": {
-        "1": {
-          "name": "punctuation.definition.seedling.tag.end.directive.layout"
-        },
-        "2": {
-          "name": "entity.seedling.directive"
-        }
-      },
-      "name": "meta.tag.seedling",
-      "patterns": [
-        {
-          "include": "#tag-stuff"
-        }
-      ]
-    },
-    {
-      "begin": "(<:router>)",
-      "beginCaptures": {
-        "1": {
-          "name": "punctuation.definition.seedling.tag.begin.directive.router"
-        },
-        "2": {
-          "name": "entity.name.tag.seedling.directive.router"
-        },
-        "3": {
-          "name": "entity.seedling.directive"
-        }
-      },
-      "end": "(</:router>)",
-      "endCaptures": {
-        "1": {
-          "name": "punctuation.definition.seedling.tag.end.directive.router"
-        },
-        "2": {
-          "name": "entity.seedling.directive"
-        }
-      },
-      "name": "meta.tag.seedling",
-      "patterns": [
-        {
-          "include": "#tag-stuff"
-        }
-      ]
-    },
-    {
-      "begin": "(<:path)",
-      "beginCaptures": {
-        "1": {
-          "name": "punctuation.definition.seedling.tag.begin.directive.path"
-        },
-        "2": {
-          "name": "entity.name.tag.seedling.directive.path"
-        },
-        "3": {
-          "name": "entity.seedling.directive"
-        }
-      },
-      "end": "(/>|</:path>)",
-      "endCaptures": {
-        "1": {
-          "name": "punctuation.definition.seedling.tag.end.directive.path"
-        },
-        "2": {
-          "name": "entity.seedling.directive"
-        }
-      },
-      "name": "meta.tag.seedling",
-      "patterns": [
-        {
-          "include": "#tag-stuff"
-        }
-      ]
-    },
-    {
       "begin": "<!--",
       "end": "-->",
       "name": "comment.block"
@@ -554,6 +321,9 @@
     {
       "match": "<!doctype html>",
       "name": "punctuation.definition.tag"
+    },
+    {
+      "include": "#all-directives"
     }
   ],
   "repository": {
@@ -574,6 +344,436 @@
         {
           "name": "invalid.illegal.bad-ampersand.html",
           "match": "&"
+        }
+      ]
+    },
+    "directive-layout": {
+      "name": "directive.layout",
+      "begin": "(<:layout)",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.directive.layout"
+        },
+        "2": {
+          "name": "entity.name.tag.seedling.directive.layout"
+        },
+        "3": {
+          "name": "entity.seedling.directive"
+        }
+      },
+      "end": "(/>)",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.end.directive.layout"
+        },
+        "2": {
+          "name": "entity.seedling.directive"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#tag-stuff"
+        }
+      ]
+    },
+    "directive-router": {
+      "name": "directive.router",
+      "begin": "(<:router>)",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.directive.router"
+        },
+        "2": {
+          "name": "entity.name.tag.seedling.directive.router"
+        },
+        "3": {
+          "name": "entity.seedling.directive"
+        }
+      },
+      "end": "(</:router>)",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.end.directive.router"
+        },
+        "2": {
+          "name": "entity.seedling.directive"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#directive-path"
+        },
+        {
+          "include": "#tag-stuff"
+        }
+      ]
+    },
+    "directive-data-json": {
+      "name": "directive.data.json",
+      "begin": "(<)(:data)\\b(?=[^>]*(?:use=('json'|\"json\")))",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.directive.data"
+        },
+        "2": {
+          "name": "entity.name.tag.seedling.directive.data"
+        }
+      },
+      "end": "(</:data>|/>)",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.html"
+        },
+        "2": {
+          "name": "entity.name.tag.seedling.directive.data"
+        },
+        "3": {
+          "name": "punctuation.definition.tag.end.directive.data"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#tag-stuff"
+        },
+        {
+          "contentName": "source.json",
+          "begin": "(>)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.tag.end.directive.data"
+            }
+          },
+          "end": "(?=</:data>)",
+          "patterns": [
+            {
+              "include": "source.json"
+            }
+          ]
+        }
+      ]
+    },
+    "directive-data-toml": {
+      "name": "directive.data.toml",
+      "begin": "(<)(:data)\\b(?=[^>]*(?:use=('toml'|\"toml\")))",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.directive.data"
+        },
+        "2": {
+          "name": "entity.name.tag.seedling.directive.data"
+        }
+      },
+      "end": "(</:data>|/>)",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.html"
+        },
+        "2": {
+          "name": "entity.name.tag.seedling.directive.data"
+        },
+        "3": {
+          "name": "punctuation.definition.tag.end.directive.data"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#tag-stuff"
+        },
+        {
+          "contentName": "source.toml",
+          "begin": "(>)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.tag.end.directive.data"
+            }
+          },
+          "end": "(?=</:data>)",
+          "patterns": [
+            {
+              "include": "source.toml"
+            }
+          ]
+        }
+      ]
+    },
+    "directive-data-yaml": {
+      "name": "directive.data.yaml",
+      "begin": "(<)(:data)\\b(?=[^>]*(?:use=('yaml'|\"yaml\"|'yml'|\"yml\")))",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.directive.data"
+        },
+        "2": {
+          "name": "entity.name.tag.seedling.directive.data"
+        }
+      },
+      "end": "(</:data>|/>)",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.html"
+        },
+        "2": {
+          "name": "entity.name.tag.seedling.directive.data"
+        },
+        "3": {
+          "name": "punctuation.definition.tag.end.directive.data"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#tag-stuff"
+        },
+        {
+          "contentName": "source.yaml",
+          "begin": "(>)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.tag.end.directive.data"
+            }
+          },
+          "end": "(?=</:data>)",
+          "patterns": [
+            {
+              "include": "source.yaml"
+            }
+          ]
+        }
+      ]
+    },
+    "directive-data-custom": {
+      "name": "directive.data.custom",
+      "begin": "(<)(:data)\\b(?=[^>]*(?:use=(?!'yaml'|\"yaml\"|'yml'|\"yml\"|'toml'|\"toml\"|'json'|\"json\")))",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.directive.data"
+        },
+        "2": {
+          "name": "entity.name.tag.seedling.directive.data"
+        }
+      },
+      "end": "(</:data>|/>)",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.html"
+        },
+        "2": {
+          "name": "entity.name.tag.seedling.directive.data"
+        },
+        "3": {
+          "name": "punctuation.definition.tag.end.directive.data"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#tag-stuff"
+        },
+        {
+          "contentName": "source.text",
+          "begin": "(>)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.definition.tag.end.directive.data"
+            }
+          },
+          "end": "(?=</:data>)",
+          "patterns": [
+            {
+              "include": "source.text"
+            }
+          ]
+        }
+      ]
+    },
+    "directive-data": {
+      "patterns": [
+        {
+          "include": "#directive-data-json"
+        },
+        {
+          "include": "#directive-data-toml"
+        },
+        {
+          "include": "#directive-data-yaml"
+        },
+        {
+          "include": "#directive-data-custom"
+        }
+      ]
+    },
+    "directive-path": {
+      "name": "directive.path",
+      "begin": "(<:path)",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.directive.path"
+        },
+        "2": {
+          "name": "entity.name.tag.seedling.directive.path"
+        },
+        "3": {
+          "name": "entity.seedling.directive"
+        }
+      },
+      "end": "(/>|</:path>)",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.end.directive.path"
+        },
+        "2": {
+          "name": "entity.seedling.directive"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#directive-data"
+        },
+        {
+          "include": "#tag-stuff"
+        }
+      ]
+    },
+    "directive-head": {
+      "name": "directive.head",
+      "begin": "(<:head)",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.directive.head"
+        },
+        "2": {
+          "name": "entity.name.tag.seedling.directive.head"
+        },
+        "3": {
+          "name": "entity.seedling.directive"
+        }
+      },
+      "end": "(</:head>)",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.end.directive.head"
+        },
+        "2": {
+          "name": "entity.seedling.directive"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#tag-stuff"
+        }
+      ]
+    },
+    "directive-element": {
+      "name": "directive.element",
+      "begin": "(<:element)",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.directive.element"
+        },
+        "2": {
+          "name": "entity.name.tag.seedling.directive.element"
+        },
+        "3": {
+          "name": "entity.seedling.directive"
+        }
+      },
+      "end": "(</:element>|/>)",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.end.directive.element"
+        },
+        "2": {
+          "name": "entity.seedling.directive"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#tag-stuff"
+        }
+      ]
+    },
+    "directive-component": {
+      "name": "directive.component",
+      "begin": "(<:component)",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.directive.component"
+        },
+        "2": {
+          "name": "entity.name.tag.seedling.directive.component"
+        },
+        "3": {
+          "name": "entity.seedling.directive"
+        }
+      },
+      "end": "(</:component>|/>)",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.end.directive.component"
+        },
+        "2": {
+          "name": "entity.seedling.directive"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#tag-stuff"
+        }
+      ]
+    },
+    "directive-slot": {
+      "name": "directive.slot",
+      "begin": "(<:slot)",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.directive.slot"
+        },
+        "2": {
+          "name": "entity.name.tag.seedling.directive.slot"
+        },
+        "3": {
+          "name": "entity.seedling.directive"
+        }
+      },
+      "end": "(</:slot>|/>)",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.end.directive.slot"
+        },
+        "2": {
+          "name": "entity.seedling.directive"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#tag-stuff"
+        }
+      ]
+    },
+    "directive-fold": {
+      "name": "directive.fold",
+      "begin": "(<:fold)",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.directive.fold"
+        },
+        "2": {
+          "name": "entity.name.tag.seedling.directive.fold"
+        },
+        "3": {
+          "name": "entity.seedling.directive"
+        }
+      },
+      "end": "(/>)",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.end.directive.fold"
+        },
+        "2": {
+          "name": "entity.seedling.directive"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#tag-stuff"
         }
       ]
     },
@@ -781,8 +981,42 @@
         }
       }
     },
+    "all-directives": {
+      "patterns": [
+        {
+          "include": "#directive-router"
+        },
+        {
+          "include": "#directive-path"
+        },
+        {
+          "include": "#directive-layout"
+        },
+        {
+          "include": "#directive-data"
+        },
+        {
+          "include": "#directive-slot"
+        },
+        {
+          "include": "#directive-element"
+        },
+        {
+          "include": "#directive-head"
+        },
+        {
+          "include": "#directive-component"
+        },
+        {
+          "include": "#directive-fold"
+        }
+      ]
+    },
     "tag-stuff": {
       "patterns": [
+        {
+          "include": "#all-directives"
+        },
         {
           "include": "#tag-event-handlers"
         },
