@@ -2,8 +2,16 @@
   "name": "seedling",
   "displayName": "Seedling",
   "description": "Syntax Highlighter for Seedling Template Language",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "publisher": "Seedling",
+  "icon": "icons/logo.png",
+  "galleryBanner": {
+    "color": "#B4C86B"
+  },
+  "repository": {
+    "url": "https://github.com/use-seedling/seedling-vs-code-plugin",
+    "type": "GIT"
+  },
   "engines": {
     "vscode": "^1.48.0"
   },

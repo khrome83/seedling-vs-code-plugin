@@ -1,5 +1,7 @@
 # Seedling VS Code Extension
 
+![alt text](icons/icon.png)
+
 This extension provides syntax highlighting for Seedling template language.
 
 ## Features
