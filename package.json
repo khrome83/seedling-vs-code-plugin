@@ -2,7 +2,7 @@
   "name": "seedling",
   "displayName": "Seedling",
   "description": "Syntax Highlighter for Seedling Template Language",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "Seedling",
   "icon": "icons/logo.png",
   "galleryBanner": {
