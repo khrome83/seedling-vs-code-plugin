@@ -1,0 +1,25 @@
+{
+    "name": "seedling",
+    "displayName": "Seedling",
+    "description": "Syntax Highlighter for Seedling Template Language",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.48.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "seedling",
+            "aliases": ["Seedling", "seedling"],
+            "extensions": [".seed",".html"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "seedling",
+            "scopeName": "source.seedling",
+            "path": "./syntaxes/seedling.tmLanguage.json"
+        }]
+    }
+}
